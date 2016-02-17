@@ -74,3 +74,14 @@ class ViewsTest(unittest.TestCase):
 		"""Test a user can perform an action when "logged in" """
 		orm = ORM(self.file_input)
 		self.assertEquals(orm.actions(4), 4)
+
+	def test_user_can_create_new_user(self):
+		"""Test a user can create a new user and save it to the db"""
+		orm = ORM(self.file_input)
+		username = 'joe'
+		password = 'python'
+		full_name = 'guiseppe moran'
+		email = 'joe@daretheventure.com'
+		new_user = ['joe', 'python', 'guiseppe moran', 'joe@daretheventure.com']
+		self.assertEquals(orm.add_user(username, password, full_name, email),
+			 new_user)

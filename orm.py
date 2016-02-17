@@ -62,3 +62,9 @@ class ORM:
 		elif action == 4:
 			return 4
 
+	def add_user(self, username, password, full_name, email):
+		"""Add a user to the db"""
+		with open('database.txt', 'a') as f:
+			new_user = [username, password, full_name, email]
+			f.write(' '.join(new_user))
+		return new_user
