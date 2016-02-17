@@ -46,6 +46,14 @@ class ORM:
 				return user
 		return False
 
+	def delete_user_info(self, username):
+		"""Delete a users info"""
+		user = self.pull_user_info(username)
+		for line in self.cleaned_data:
+			if line == user:
+				line = self.cleaned_data.remove(line)
+				return True	
+
 	def welcome(self, username):
 		"""Display user info when "logged in" """
 		user = self.pull_user_info(username)
@@ -85,6 +93,7 @@ class ORM:
 			for line in data:
 				if line != user:
 					f.write(line)
+		user = self.delete_user_info(username)
 		return update_user
 
 	def change_email(self, username, new_email):
@@ -100,6 +109,7 @@ class ORM:
 			for line in data:
 				if line != user:
 					f.write(line)
+		user = self.delete_user_info(username)
 		return update_user
 
 	def logout(self, username, password):

@@ -64,6 +64,11 @@ class ViewsTest(unittest.TestCase):
 		self.orm = ORM(self.file_input)
 		self.assertFalse(self.orm.pull_user_info('mike'))
 
+	def test_user_info_gets_deleted(self):
+		"""Test that the user info gets deleted"""
+		self.orm = ORM(self.file_input)
+		self.assertEquals(self.orm.delete_user_info('joegotflow83'), True)
+
 	def test_user_gets_welcome_message_when_logged_on(self):
 		"""Test that a welcome message is displayed when the user is "logged in" """
 		self.orm = ORM(self.file_input)
