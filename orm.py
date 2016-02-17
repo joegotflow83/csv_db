@@ -22,3 +22,29 @@ class ORM:
 			if name[0] == username:
 				return True
 		return False
+
+	def get_password(self, password):
+		"""Return if the password is the password provided is in the db"""
+		for hidden in self.cleaned_data:
+			if hidden[1] == password:
+				return True
+		return False
+
+	def check_credentials(self, username, password):
+		"""When a user is logged in display the info"""
+		if self.get_username(username) and self.get_password(password):
+			return (True, username)
+		else:
+			return 'Invalid Credentials'
+
+	def pull_user_info(self, username):
+		"""Pull the user info to display to them"""
+		for user in self.cleaned_data:
+			if user[0] == username:
+				return user
+		return False
+
+	def welcome(self, username):
+		"""Display user info when "logged in" """
+		user = self.pull_user_info(username)
+		return "Welcome back {}!".format(user[0])
