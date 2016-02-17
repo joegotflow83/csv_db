@@ -66,5 +66,44 @@ class ORM:
 		"""Add a user to the db"""
 		with open('database.txt', 'a') as f:
 			new_user = [username, password, full_name, email]
-			f.write(' '.join(new_user))
+			if self.get_username(new_user[0]):
+				return 'That username already exists! Use a different username'
+			else:
+				f.write('\n' + ' '.join(new_user))
 		return new_user
+
+	def change_password(self, username, new_password):
+		"""Allow a user to change their password"""
+		user = self.pull_user_info(username)
+		update_user = self.pull_user_info(username)
+		update_user[1] = new_password
+		with open('database.txt', 'a') as f:
+			f.write('\n' + ' '.join(update_user))
+		with open('database.txt', 'r') as f:
+			data = f.readlines()
+		with open('database.txt', 'w') as f:
+			for line in data:
+				if line != user:
+					f.write(line)
+		return update_user
+
+	def change_email(self, username, new_email):
+		"""Allow a user to change their email"""
+		user = self.pull_user_info(username)
+		update_user = self.pull_user_info(username)
+		update_user[3] = new_email
+		with open('database.txt', 'a') as f:
+			f.write('\n' + ' '.join(update_user))
+		with open('database.txt', 'r') as f:
+			data = f.readlines()
+		with open('database.txt', 'w') as f:
+			for line in data:
+				if line != user:
+					f.write(line)
+		return update_user
+
+	def logout(self, username, password):
+		"""Allow a user to log out"""
+		username = None
+		password = None
+		return (False, username, password)

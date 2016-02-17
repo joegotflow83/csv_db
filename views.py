@@ -24,5 +24,19 @@ while True:
 				email = input("Enter a email: ")
 				new_user = my_orm.add_user(username, password, full_name, email)
 				decision = 0
+			elif decision == 2:
+				alter_password = input("Enter your new password: ")
+				new_password = my_orm.change_password(username, alter_password)
+				print("Your password has been changed!")
+				decision = 0
+			elif decision == 3:
+				alter_email = input("Enter your new email: ")
+				new_email = my_orm.change_email(username, alter_email)
+				print("Your email has been changed!")
+				decision = 0
+			elif decision == 4:
+				logged_out = my_orm.logout(username, password)
+				print("You logged out!")
+
 	else:
 		print("Invalid Credentials")
