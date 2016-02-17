@@ -1,0 +1,5 @@
+joegotflow83,admin,joseph moran,joe@absolutod.com
+yoshi,dinosaur,yoshi the dinosaur,yoshi@eggs.com
+mariohot,kingdom,mario mario,mario@mushroom.com
+luigigreen,kindgom2,luigi mario,luigi@mushroom.com
+toad,tiny_mushroom,toad toad,toad@mushroom.com
