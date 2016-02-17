@@ -3,13 +3,15 @@ class ORM:
 
 	def __init__(self, file_contents=[]):
 		"""Initiazlie variables"""
-		self.cleaned_data = file_contents
+		self.file_contents = self.read_file(self)
+		self.cleaned_data = self.clean_file(self, self.file_contents)
 
 	@staticmethod
 	def clean_file(self, file_contents):
 		"""Read the file contents in a formatted manner"""
-		return [line.split(',') for line in file_contents]
+		return [line.strip().split(',') for line in file_contents]
 
+	@staticmethod
 	def read_file(self):
 		"""Open the database and read the contents"""
 		with open("database.txt") as f:
@@ -48,3 +50,15 @@ class ORM:
 		"""Display user info when "logged in" """
 		user = self.pull_user_info(username)
 		return "Welcome back {}!".format(user[0])
+		
+	def actions(self, action):
+		"""Allow the user to take an action on his account"""
+		if action == 1:
+			return 1
+		elif action == 2:
+			return 2
+		elif action == 3:
+			return 3
+		elif action == 4:
+			return 4
+

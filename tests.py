@@ -10,6 +10,8 @@ class ViewsTest(unittest.TestCase):
 		"""Set up testing env"""
 		self.file_input = [['joegotflow83', 'admin', 'joseph moran', 'joe@absolutod.com'],
 			['yoshi', 'dinosaur', 'yoshi the dinosaur', 'yoshi@eggs.com']]
+		self.orm = ORM(file_contents=self.file_input)
+
 
 	def tearDown(self):
 		"""Tear down the testing env"""
@@ -67,3 +69,8 @@ class ViewsTest(unittest.TestCase):
 		orm = ORM(self.file_input)
 		username = self.file_input[0][0]
 		self.assertIn(orm.welcome('joegotflow83'), 'Welcome back {}!'.format(username))
+
+	def test_user_can_pick_an_action(self):
+		"""Test a user can perform an action when "logged in" """
+		orm = ORM(self.file_input)
+		self.assertEquals(orm.actions(4), 4)
